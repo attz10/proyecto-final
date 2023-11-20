@@ -12,8 +12,8 @@ class Listado extends StatefulWidget {
 class _ListadoState extends State<Listado> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder(
+    return Container(
+      child: StreamBuilder(
         stream: FirebaseService().eventos(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData ||
