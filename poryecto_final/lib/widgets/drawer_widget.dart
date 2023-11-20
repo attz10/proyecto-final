@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:poryecto_final/constants/colores_const.dart';
+import 'package:poryecto_final/services/firebase_service.dart';
+import 'package:poryecto_final/widgets/btns_inicio_cerrado.dart';
 import 'package:poryecto_final/widgets/drawer_tile_widget.dart';
+
+//poner imagen al user
+String imgUser() {
+  bool user = FirebaseService().userEstaLogeado();
+  if(user) {
+    //el user es está logeado
+    return 'admin_user.jpg';
+  }
+  //el user NO está logeado
+  return 'user_image.png';
+}
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -28,7 +41,7 @@ class DrawerWidget extends StatelessWidget {
                     border: Border.all(color: Colores.getAmarillo(), width: 4),
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage('images/user_image.png'),
+                      image: AssetImage('images/'+imgUser()),
                     ),
                   ),
                 ),
@@ -68,26 +81,7 @@ class DrawerWidget extends StatelessWidget {
           //btn cerrar y inciar sesion
           Container(
             margin: EdgeInsets.only(top: 25, bottom: 10),
-            child: FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: Colors.white,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(MdiIcons.account, 
-                    color: Colores.getAmarillo(),
-                    size: 35,
-                  ),
-                  Text(' Iniciar sesión', style: TextStyle(
-                    color: Colores.getGris(),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  )),
-                ],
-              ),
-              onPressed: () {},
-            ),
+            child: BtnsInicioCerradoSesion(drawerContext: context),
           ),
         ],
       ),

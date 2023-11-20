@@ -19,10 +19,12 @@ class DrawerTileWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: ListTile(
+        //icono
         leading: Icon(this.icono, 
           color: Colores.getAmarillo(),
           size: 32,
         ),
+        //titulo
         title: Text(this.titulo, style: TextStyle(
           color: Colores.getGris(),
           fontSize: 18,
