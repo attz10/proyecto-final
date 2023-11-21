@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:poryecto_final/constants/colores_const.dart';
 import 'package:poryecto_final/pages/listado.dart';
+import 'package:poryecto_final/services/firebase_service.dart';
+import 'package:poryecto_final/utils/msg_scaffold_util.dart';
 import 'package:poryecto_final/widgets/drawer_widget.dart';
 
 class Home extends StatefulWidget {
@@ -43,7 +45,7 @@ class _HomeState extends State<Home> {
       ),
       //body
       body: Padding(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.only(left: 5, top: 5, right: 5),
         child: Column(
           children: [
             //titulo
@@ -51,7 +53,7 @@ class _HomeState extends State<Home> {
               width: double.infinity,
               height: 50,
               alignment: Alignment.center,
-              margin: EdgeInsets.only(bottom: 20, top: 5),
+              margin: EdgeInsets.only(bottom: 10, top: 5),
               decoration: BoxDecoration(
                 color: Colores.getGris(),
                 borderRadius: BorderRadius.circular(10),
@@ -64,7 +66,17 @@ class _HomeState extends State<Home> {
             ),
             //eventos
             Expanded(
-              child: Listado(),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colores.getFondo(),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(
+                    color: Colors.green,
+                    width: 1.5,
+                  ),
+                ),
+                child: Listado(),
+              ),
             ),
           ],
         ),
@@ -73,6 +85,27 @@ class _HomeState extends State<Home> {
       endDrawer: Drawer(
         backgroundColor: Colores.getGris(),
         child: DrawerWidget(homeContext: context),
+      ),
+      //boton de agregado flotante
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        child: Icon(
+          MdiIcons.plus, 
+          color: Colors.white,
+          size: 40,
+        ),
+        onPressed: () {
+          bool user = FirebaseService().userEstaLogeado();
+          //el user es admin?
+          if(user){
+            //si lo es, ir a la página de agregado
+          }
+          //no es admin
+          else{
+            UtilMensaje.mostrarSnackbar(context, MdiIcons.alertOutline, 
+            'Error, no es administrador');
+          }
+        },
       ),
     );
   }

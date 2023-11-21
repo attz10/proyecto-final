@@ -9,4 +9,8 @@ class Colores{
   static Color getAmarillo() {
     return Color(0xFFF7AE00);
   }
+  //color fondo eventos
+  static Color getFondo() {
+    return Color(0xFFFFEF8A);
+  }
 }
