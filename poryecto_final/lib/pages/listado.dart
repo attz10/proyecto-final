@@ -19,9 +19,10 @@ class Listado extends StatelessWidget {
           if (!snapshot.hasData ||
               snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
-          } else { 
+          } else {
             return ListView.separated(
-              separatorBuilder: (context, index) => Divider(color: Colors.transparent),
+              separatorBuilder: (context, index) =>
+                  Divider(color: Colors.transparent),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 var evento = snapshot.data!.docs[index];
@@ -44,14 +45,15 @@ class Listado extends StatelessWidget {
                           onPressed: (context) {
                             bool user = FirebaseService().userEstaLogeado();
                             //el user es admin?
-                            if(user) {
+                            if (user) {
                               //es admin
-
                             }
                             //no es admin
-                            else{
-                              UtilMensaje.mostrarSnackbar(context, MdiIcons.alertCircle, 
-                                'Error, usted no es administrador');
+                            else {
+                              UtilMensaje.mostrarSnackbar(
+                                  context,
+                                  MdiIcons.alertCircle,
+                                  'Error, usted no es administrador');
                             }
                           },
                         ),
@@ -70,14 +72,15 @@ class Listado extends StatelessWidget {
                           onPressed: (context) {
                             bool user = FirebaseService().userEstaLogeado();
                             //el user es admin?
-                            if(user) {
+                            if (user) {
                               //es admin
-
                             }
                             //no es admin
-                            else{
-                              UtilMensaje.mostrarSnackbar(context, MdiIcons.alertCircle, 
-                                'Error, usted no es administrador');
+                            else {
+                              UtilMensaje.mostrarSnackbar(
+                                  context,
+                                  MdiIcons.alertCircle,
+                                  'Error, usted no es administrador');
                             }
                           },
                         ),
@@ -93,15 +96,17 @@ class Listado extends StatelessWidget {
                         ),
                         //titulo
                         Container(
-                          child: Text(evento['nombre'], style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          )),
+                          child: Text(evento['nombre'],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              )),
                         ),
                         //like y fecha
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -110,36 +115,41 @@ class Listado extends StatelessWidget {
                                 children: [
                                   InkWell(
                                     child: Icon(
-                                      MdiIcons.thumbUpOutline, 
+                                      MdiIcons.thumbUpOutline,
                                       color: Colors.white,
                                     ),
                                     onTap: () {
                                       //sumar like
                                       //mensaje
-                                      UtilMensaje.mostrarSnackbar(context, MdiIcons.thumbUp, 
-                                        '${evento['nombre']}');
+                                      UtilMensaje.mostrarSnackbar(
+                                          context,
+                                          MdiIcons.thumbUp,
+                                          '${evento['nombre']}');
                                     },
                                   ),
-                                  Text('  {numero de likes}', style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  )),
+                                  Text('  ${evento['likes']}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      )),
                                 ],
                               ),
                               //fecha
-                              Text('{fecha del evento}', style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              )),
+                              Text('{fecha del evento}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  )),
                             ],
                           ),
                         ),
                         //descripcion del evento
                         Container(
                           padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.symmetric(vertical: 5, horizontal: 80),
+                          margin:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 80),
                           decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius: BorderRadiusDirectional.circular(15),
@@ -148,17 +158,18 @@ class Listado extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(MdiIcons.informationOutline, color: Colors.white),
-                                Text(' Descripción', style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                )),
+                                Icon(MdiIcons.informationOutline,
+                                    color: Colors.white),
+                                Text(' Descripción',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ],
                             ),
                             onTap: () {
                               //ver la descripción del evento
-
                             },
                           ),
                         ),
