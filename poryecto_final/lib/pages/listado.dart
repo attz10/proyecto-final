@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:poryecto_final/services/firebase_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Listado extends StatefulWidget {
+class Listado extends StatelessWidget {
   const Listado({super.key});
 
-  @override
-  State<Listado> createState() => _ListadoState();
-}
-
-class _ListadoState extends State<Listado> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +14,7 @@ class _ListadoState extends State<Listado> {
           if (!snapshot.hasData ||
               snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
-          } else {
+          } else { 
             return ListView.separated(
               separatorBuilder: (context, index) => Divider(),
               itemCount: snapshot.data!.docs.length,

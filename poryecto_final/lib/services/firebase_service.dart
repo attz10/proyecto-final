@@ -51,20 +51,18 @@ class FirebaseService {
   
   //saber si el user está logeado
   bool userEstaLogeado() {
-    int loged = 0;
-    FirebaseAuth.instance.idTokenChanges().listen((User? user) {
-      //hay un user logeado?
-      if (user == null) {
-        //no hay
-        loged = 0;
-      }
-      //si hay
-      else {
-        loged = 1;
-      }
-    });
-    //retorna TRUE si loged == 1
-    return loged == 1;
+    //hay user?
+    if (_auth.currentUser != null){
+      //si, hay un user logeado
+      return true;
+    }
+    //no hay user logeado
+    return false;
+  }
+
+  //retornar objeto user tipo stream
+  Stream<User?> get usuario {
+    return _auth.authStateChanges();
   }
 }
 

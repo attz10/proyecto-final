@@ -12,9 +12,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  //variables
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>(); 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //key
+      key: scaffoldKey,
       //appbar
       appBar: AppBar(
         backgroundColor: Colores.getGris(),
@@ -66,7 +72,7 @@ class _HomeState extends State<Home> {
       //drawer
       endDrawer: Drawer(
         backgroundColor: Colores.getGris(),
-        child: DrawerWidget(),
+        child: DrawerWidget(homeContext: context),
       ),
     );
   }
