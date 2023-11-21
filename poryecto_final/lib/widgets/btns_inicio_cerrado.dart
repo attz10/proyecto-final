@@ -7,7 +7,7 @@ import 'package:poryecto_final/utils/msg_scaffold_util.dart';
 Widget btnInicioCerrado(BuildContext drawerContext, BuildContext homeContext) {
   bool user = FirebaseService().userEstaLogeado();
   //hay user?
-  if(user){
+  if (user) {
     //hay user
     return FilledButton(
       style: FilledButton.styleFrom(
@@ -16,23 +16,25 @@ Widget btnInicioCerrado(BuildContext drawerContext, BuildContext homeContext) {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(MdiIcons.logout, 
+          Icon(
+            MdiIcons.logout,
             color: Colores.getAmarillo(),
             size: 35,
           ),
-          Text(' Cerrar sesión', style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          )),
+          Text(' Cerrar sesión',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              )),
         ],
       ),
       onPressed: () => FirebaseService().cerrarSesion().then((cerradoOK) {
         //cierro drawer
         Navigator.pop(drawerContext);
         //mando mensaje en el home
-        UtilMensaje.mostrarSnackbar(homeContext, MdiIcons.checkBold, 
-          'Cerrado de sesión exitoso');
+        UtilMensaje.mostrarSnackbar(
+            homeContext, MdiIcons.checkBold, 'Cerrado de sesión exitoso');
       }),
     );
   }
@@ -44,29 +46,32 @@ Widget btnInicioCerrado(BuildContext drawerContext, BuildContext homeContext) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(MdiIcons.account, 
+        Icon(
+          MdiIcons.account,
           color: Colores.getAmarillo(),
           size: 35,
         ),
-        Text(' Iniciar sesión', style: TextStyle(
-          color: Colores.getGris(),
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        )),
+        Text(' Iniciar sesión',
+            style: TextStyle(
+              color: Colores.getGris(),
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            )),
       ],
     ),
     onPressed: () => FirebaseService().iniciarSesion().then((inicioOK) {
       //cierro drawer
       Navigator.pop(drawerContext);
       //mando mensaje en el home
-      UtilMensaje.mostrarSnackbar(homeContext, MdiIcons.checkBold, 
-        'Inicio de sesión exitoso');
+      UtilMensaje.mostrarSnackbar(
+          homeContext, MdiIcons.checkBold, 'Inicio de sesión exitoso');
     }),
   );
 }
 
 class BtnsInicioCerradoSesion extends StatelessWidget {
-  const BtnsInicioCerradoSesion({super.key,
+  const BtnsInicioCerradoSesion({
+    super.key,
     required this.drawerContext,
     required this.homeContext,
   });

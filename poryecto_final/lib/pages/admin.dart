@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:poryecto_final/constants/colores_const.dart';
-import 'package:poryecto_final/pages/listado.dart';
+//import 'package:poryecto_final/pages/listado.dart';
+import 'package:poryecto_final/pages/listado_admin.dart';
 import 'package:poryecto_final/widgets/drawer_widget.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Admin extends StatefulWidget {
+  const Admin({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Admin> createState() => _AdminState();
 }
 
-class _HomeState extends State<Home> {
-  //variables
+class _AdminState extends State<Admin> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             //titulo
-            Container(
+            /*Container(
               width: double.infinity,
               height: 50,
               alignment: Alignment.center,
@@ -63,10 +63,10 @@ class _HomeState extends State<Home> {
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   )),
-            ),
+            ),*/
             //eventos
             Expanded(
-              child: Listado(),
+              child: ListadoAdmin(),
             ),
           ],
         ),

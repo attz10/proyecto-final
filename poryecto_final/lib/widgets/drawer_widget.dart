@@ -7,7 +7,7 @@ import 'package:poryecto_final/widgets/drawer_tile_widget.dart';
 //poner imagen al user
 String imgUser() {
   bool user = FirebaseService().userEstaLogeado();
-  if(user) {
+  if (user) {
     //el user es está logeado
     return 'admin_user.jpg';
   }
@@ -18,14 +18,15 @@ String imgUser() {
 //poner nombre al user
 String nombreUser() {
   bool user = FirebaseService().userEstaLogeado();
-  if(user) {
+  if (user) {
     return 'Administrador';
   }
   return 'inicie sesión';
 }
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key,
+  const DrawerWidget({
+    super.key,
     required this.homeContext,
   });
 
@@ -48,27 +49,29 @@ class DrawerWidget extends StatelessWidget {
                   color: Color(0xFF787878),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Column( 
+                child: Column(
                   children: [
                     //imagen user
                     Container(
                       height: 130,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colores.getAmarillo(), width: 4),
+                        border:
+                            Border.all(color: Colores.getAmarillo(), width: 4),
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage('images/'+imgUser()),
+                          image: AssetImage('images/' + imgUser()),
                         ),
                       ),
                     ),
                     //nombre user
                     Container(
                       margin: EdgeInsets.only(top: 10),
-                      child: Text(nombreUser(), style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                      )),
+                      child: Text(nombreUser(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                          )),
                     ),
                   ],
                 ),
@@ -88,10 +91,13 @@ class DrawerWidget extends StatelessWidget {
               //btn cerrar y inciar sesion
               Container(
                 margin: EdgeInsets.only(top: 25, bottom: 10),
-                child: BtnsInicioCerradoSesion(drawerContext: context, homeContext: homeContext),
+                child: BtnsInicioCerradoSesion(
+                  drawerContext: context,
+                  homeContext: homeContext,
+                ),
               ),
             ],
-        );
+          );
         },
       ),
     );
