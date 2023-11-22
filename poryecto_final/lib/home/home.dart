@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:poryecto_final/constants/colores_const.dart';
+import 'package:poryecto_final/pages/ingresar_evento.dart';
 import 'package:poryecto_final/pages/listado.dart';
 import 'package:poryecto_final/services/firebase_service.dart';
 import 'package:poryecto_final/utils/msg_scaffold_util.dart';
@@ -14,9 +15,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   //variables
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>(); 
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +30,18 @@ class _HomeState extends State<Home> {
         leading: Icon(MdiIcons.partyPopper),
         title: Row(
           children: [
-            Text('  App de eventos', style:  TextStyle(
-              color: Colors.white,
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            )),
-            Text(' TE', style:  TextStyle(
-              color: Colores.getAmarillo(),
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            )),
+            Text('  App de eventos',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                )),
+            Text(' TE',
+                style: TextStyle(
+                  color: Colores.getAmarillo(),
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                )),
           ],
         ),
       ),
@@ -58,11 +60,12 @@ class _HomeState extends State<Home> {
                 color: Colores.getGris(),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Text('Listado de eventos disponibles', style: TextStyle(
-                color: Colors.white,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              )),
+              child: Text('Listado de eventos disponibles',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  )),
             ),
             //eventos
             Expanded(
@@ -90,20 +93,23 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         child: Icon(
-          MdiIcons.plus, 
+          MdiIcons.plus,
           color: Colors.white,
           size: 40,
         ),
         onPressed: () {
           bool user = FirebaseService().userEstaLogeado();
           //el user es admin?
-          if(user){
+          if (user) {
             //si lo es, ir a la página de agregado
+            MaterialPageRoute ruta =
+                MaterialPageRoute(builder: (context) => IngresarEvento());
+            Navigator.push(context, ruta);
           }
           //no es admin
-          else{
-            UtilMensaje.mostrarSnackbar(context, MdiIcons.alertOutline, 
-            'Error, no es administrador');
+          else {
+            UtilMensaje.mostrarSnackbar(
+                context, MdiIcons.alertOutline, 'Error, no es administrador');
           }
         },
       ),

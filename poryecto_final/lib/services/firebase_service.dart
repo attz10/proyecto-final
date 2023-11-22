@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseService {
-
   //atributos
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -13,20 +12,32 @@ class FirebaseService {
     return FirebaseFirestore.instance.collection('eventos').snapshots();
   }
 
-  //login 
+  //agregar evento
+  Future<void> eventoAgregar(
+      String nombre, String descripcion, String lugar) async {
+    return FirebaseFirestore.instance.collection('eventos').doc().set({
+      'nombre': nombre,
+      'descripcion': descripcion,
+      'lugar': lugar,
+      'likes': 0,
+    });
+  }
+
+  //login
   Future<bool> iniciarSesion() async {
     int loged = 0;
     //intento iniciar sesión
-    try{
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn(); 
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       //hay user?
-      if(googleUser == null) {
+      if (googleUser == null) {
         //NO hay user logeado
         loged = 0;
       }
       //hay user logeado
-      else{
-        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      else {
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
         final credencial = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
@@ -36,7 +47,7 @@ class FirebaseService {
       }
     }
     //error
-    catch(e){
+    catch (e) {
       print(e);
     }
     //retorna TRUE si loged == 1
@@ -48,11 +59,11 @@ class FirebaseService {
     await _auth.signOut();
     await _googleSignIn.signOut();
   }
-  
+
   //saber si el user está logeado
   bool userEstaLogeado() {
     //hay user?
-    if (_auth.currentUser != null){
+    if (_auth.currentUser != null) {
       //si, hay un user logeado
       return true;
     }
@@ -65,5 +76,3 @@ class FirebaseService {
     return _auth.authStateChanges();
   }
 }
-
-
