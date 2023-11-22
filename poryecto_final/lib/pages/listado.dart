@@ -121,6 +121,8 @@ class Listado extends StatelessWidget {
                                     ),
                                     onTap: () {
                                       //sumar like
+                                      FirebaseService().editarLikes(
+                                          evento.id, evento['likes']);
                                       //mensaje
                                       UtilMensaje.mostrarSnackbar(
                                           context,

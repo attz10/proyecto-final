@@ -20,6 +20,15 @@ class FirebaseService {
       'descripcion': descripcion,
       'lugar': lugar,
       'likes': 0,
+      'megusta': false,
+    });
+  }
+
+  //editar likes
+  Future<void> editarLikes(String id, int likes) async {
+    return FirebaseFirestore.instance.collection('eventos').doc(id).update({
+      'likes': likes + 1,
+      'megusta': true,
     });
   }
 
