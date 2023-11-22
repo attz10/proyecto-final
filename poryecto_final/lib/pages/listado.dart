@@ -75,6 +75,10 @@ class Listado extends StatelessWidget {
                             //el user es admin?
                             if (user) {
                               //es admin
+                              FirebaseService().borrarEvento(evento.id);
+
+                              UtilMensaje.mostrarSnackbar(context,
+                                  MdiIcons.delete, 'borrado con exito');
                             }
                             //no es admin
                             else {

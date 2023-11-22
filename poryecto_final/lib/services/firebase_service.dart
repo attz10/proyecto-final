@@ -32,6 +32,11 @@ class FirebaseService {
     });
   }
 
+  //borrar evento
+  Future<void> borrarEvento(String id) async {
+    return FirebaseFirestore.instance.collection('eventos').doc(id).delete();
+  }
+
   //login
   Future<bool> iniciarSesion() async {
     int loged = 0;
